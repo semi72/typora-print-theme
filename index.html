@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Theme for Typora</title>
+    <meta name="description" content="Print-optimized Typora theme for minimal paper usage. Compact typography, smart page breaks, clean output.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #555;
+            --accent: #0066cc;
+            --bg: #ffffff;
+            --bg-alt: #f8f9fa;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--primary);
+            line-height: 1.6;
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            max-width: 320px;
+            height: auto;
+            margin-bottom: 24px;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--secondary);
+            margin-bottom: 32px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+        }
+
+        .btn-secondary {
+            background: var(--bg);
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-alt);
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 0;
+            background: var(--bg-alt);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 1.75rem;
+            margin-bottom: 48px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .feature {
+            background: white;
+            padding: 28px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .feature h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Screenshots */
+        .screenshots {
+            padding: 60px 0;
+        }
+
+        .screenshots h2 {
+            text-align: center;
+            font-size: 1.75rem;
+            margin-bottom: 48px;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+        }
+
+        .screenshot {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .screenshot-caption {
+            padding: 16px;
+            background: var(--bg-alt);
+            font-size: 0.9rem;
+            color: var(--secondary);
+            text-align: center;
+        }
+
+        /* Variants */
+        .variants {
+            padding: 60px 0;
+            background: var(--bg-alt);
+        }
+
+        .variants h2 {
+            text-align: center;
+            font-size: 1.75rem;
+            margin-bottom: 48px;
+        }
+
+        .variant-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .variant-table th,
+        .variant-table td {
+            padding: 16px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .variant-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        .variant-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .variant-table code {
+            background: var(--bg-alt);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Installation */
+        .installation {
+            padding: 60px 0;
+        }
+
+        .installation h2 {
+            text-align: center;
+            font-size: 1.75rem;
+            margin-bottom: 48px;
+        }
+
+        .install-steps {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .install-step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .step-content code {
+            display: block;
+            background: var(--bg-alt);
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            overflow-x: auto;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header {
+                padding: 40px 0 32px;
+            }
+
+            .logo {
+                max-width: 240px;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .screenshot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <img src="assets/logo.png" alt="Print Theme for Typora" class="logo">
+        <p class="tagline">Print-optimized Typora theme for minimal paper usage</p>
+        <div class="cta-buttons">
+            <a href="https://github.com/semi72/typora-print-theme/releases" class="btn btn-primary">Download</a>
+            <a href="https://github.com/semi72/typora-print-theme" class="btn btn-secondary">View on GitHub</a>
+        </div>
+    </div>
+</header>
+
+<section class="features">
+    <div class="container">
+        <h2>Why Print Theme?</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <h3>Save Paper</h3>
+                <p>Compact 9pt typography fits more content per page. Print the same document with significantly fewer pages.</p>
+            </div>
+            <div class="feature">
+                <h3>Smart Page Breaks</h3>
+                <p>Headings stay with their content. No orphan lines at page boundaries. Tables and code blocks remain intact.</p>
+            </div>
+            <div class="feature">
+                <h3>Wide Code Blocks</h3>
+                <p>Tiny 6pt monospace font for code blocks. Perfect for ASCII diagrams, wide tables, and technical documentation.</p>
+            </div>
+            <div class="feature">
+                <h3>Clean Output</h3>
+                <p>No background colors or borders on code blocks. Minimal margins maximize usable space. Professional results.</p>
+            </div>
+            <div class="feature">
+                <h3>Cross-Platform</h3>
+                <p>Tested on macOS with specific styles for Windows and Linux. Works everywhere Typora runs.</p>
+            </div>
+            <div class="feature">
+                <h3>Easy to Customize</h3>
+                <p>CSS variables for colors, spacing, and fonts. Adjust to your preferences in seconds.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="screenshots">
+    <div class="container">
+        <h2>See It in Action</h2>
+        <div class="screenshot-grid">
+            <div class="screenshot">
+                <img src="assets/screen-1.png" alt="Print Theme in Typora editor">
+                <div class="screenshot-caption">Clean, readable typography in the editor</div>
+            </div>
+            <div class="screenshot">
+                <img src="assets/screen-2.png" alt="Print preview showing compact layout">
+                <div class="screenshot-caption">Optimized print layout with DIN A4 support</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="variants">
+    <div class="container">
+        <h2>Available Variants</h2>
+        <table class="variant-table">
+            <thead>
+                <tr>
+                    <th>Theme</th>
+                    <th>File</th>
+                    <th>Paper Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Print</strong></td>
+                    <td><code>print.css</code></td>
+                    <td>DIN A4 (210 × 297 mm)</td>
+                </tr>
+                <tr>
+                    <td><strong>Print Letter</strong></td>
+                    <td><code>print-letter.css</code></td>
+                    <td>US Letter (8.5" × 11")</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="installation">
+    <div class="container">
+        <h2>Installation</h2>
+        <div class="install-steps">
+            <div class="install-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Download the theme files</h3>
+                    <p>Get <code>print.css</code> and/or <code>print-letter.css</code> from the GitHub repository.</p>
+                </div>
+            </div>
+            <div class="install-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Copy to Typora themes folder</h3>
+                    <p>Place the CSS files in your Typora themes directory:</p>
+                    <code>
+                        <strong>macOS:</strong> ~/Library/Application Support/abnerworks.Typora/themes/<br>
+                        <strong>Windows:</strong> %APPDATA%\Typora\themes\<br>
+                        <strong>Linux:</strong> ~/.config/Typora/themes/
+                    </code>
+                </div>
+            </div>
+            <div class="install-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Restart Typora and select the theme</h3>
+                    <p>Open Typora, go to <strong>Themes</strong> menu, and select <strong>Print</strong> or <strong>Print Letter</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>
+            <a href="https://github.com/semi72/typora-print-theme">GitHub</a> ·
+            MIT License ·
+            Made for <a href="https://typora.io">Typora</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

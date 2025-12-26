@@ -1,0 +1,743 @@
+/*
+ * Typora Theme: Print Letter
+ * Optimized for US Letter (8.5" x 11") printing with compact layout
+ *
+ * Key features:
+ * - Compact font size (10.5px base) for minimal paper usage
+ * - Proper orphan/widow control to prevent line breaks at page boundaries
+ * - US Letter optimized page margins and text width
+ * - Clean, readable sans-serif typography
+ */
+
+/* ============================================
+   CSS VARIABLES - Easy customization
+   ============================================ */
+:root {
+    /* Colors */
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --heading-color: #000000;
+    --link-color: #0066cc;
+    --code-bg: #f5f5f5;
+    --code-border: #e0e0e0;
+    --table-border: #cccccc;
+    --table-header-bg: #f0f0f0;
+    --table-stripe-bg: #f8f8f8;
+    --blockquote-border: #999999;
+    --blockquote-color: #555555;
+    --hr-color: #cccccc;
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono-font: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+
+    /* Spacing - compact values */
+    --base-spacing: 0.5em;
+    --heading-margin-top: 1em;
+    --heading-margin-bottom: 0.4em;
+    --paragraph-spacing: 0.5em;
+    --list-indent: 1.5em;
+
+    /* Sidebar */
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #666;
+    --active-file-bg-color: #e8e8e8;
+    --active-file-text-color: #1a1a1a;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+html {
+    font-size: 10.5px; /* Compact base size for print */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.45; /* Compact but readable */
+    margin: 0;
+    padding: 0;
+}
+
+/* ============================================
+   WRITING AREA
+   ============================================ */
+#write {
+    max-width: 180mm; /* Optimized for Letter with margins */
+    margin: 0 auto;
+    padding: 15px 20px 60px 20px;
+}
+
+@media only screen and (min-width: 1400px) {
+    #write {
+        max-width: 196mm;
+    }
+}
+
+/* ============================================
+   TYPOGRAPHY - Headings
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family);
+    color: var(--heading-color);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-top: var(--heading-margin-top);
+    margin-bottom: var(--heading-margin-bottom);
+    /* Prevent page break after headings - keep with next content */
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+}
+
+/* Keep heading together with following content */
+h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + *,
+h1 + table, h2 + table, h3 + table, h4 + table, h5 + table, h6 + table,
+h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p,
+h1 + ul, h2 + ul, h3 + ul, h4 + ul, h5 + ul, h6 + ul,
+h1 + ol, h2 + ol, h3 + ol, h4 + ol, h5 + ol, h6 + ol,
+h1 + pre, h2 + pre, h3 + pre, h4 + pre, h5 + pre, h6 + pre,
+h1 + .md-fences, h2 + .md-fences, h3 + .md-fences, h4 + .md-fences, h5 + .md-fences, h6 + .md-fences {
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--hr-color);
+    padding-bottom: 0.3em;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 0.25em;
+}
+
+h3 {
+    font-size: 1.3rem;
+}
+
+h4 {
+    font-size: 1.15rem;
+}
+
+h5 {
+    font-size: 1.05rem;
+}
+
+h6 {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* ============================================
+   TYPOGRAPHY - Body Text
+   ============================================ */
+p {
+    margin: var(--paragraph-spacing) 0;
+    /* Prevent orphans and widows */
+    orphans: 3;
+    widows: 3;
+}
+
+strong {
+    font-weight: 600;
+}
+
+em {
+    font-style: italic;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+mark {
+    background-color: #fff3cd;
+    padding: 0.1em 0.2em;
+}
+
+/* ============================================
+   LISTS - Compact styling
+   ============================================ */
+ul, ol {
+    margin: var(--paragraph-spacing) 0;
+    padding-left: var(--list-indent);
+}
+
+ul ul, ul ol, ol ul, ol ol {
+    margin: 0;
+}
+
+li {
+    margin: 0.15em 0;
+    /* Prevent page break inside list items */
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+li > p {
+    margin: 0.2em 0;
+}
+
+/* Task lists */
+.md-task-list-item {
+    list-style-type: none;
+    padding-left: 0.2em;
+}
+
+.md-task-list-item > input {
+    margin-left: -1.5em;
+    margin-right: 0.3em;
+}
+
+.task-list {
+    padding-left: 1.2em;
+}
+
+/* ============================================
+   BLOCKQUOTES
+   ============================================ */
+blockquote {
+    margin: var(--paragraph-spacing) 0;
+    margin-left: 0;
+    padding: 0.3em 0 0.3em 1em;
+    border-left: 3px solid var(--blockquote-border);
+    color: var(--blockquote-color);
+    font-style: italic;
+    /* Prevent page break inside */
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+blockquote blockquote {
+    margin-left: 0;
+}
+
+blockquote p {
+    margin: 0.3em 0;
+}
+
+/* ============================================
+   CODE - Compact styling for ASCII diagrams
+   ============================================ */
+code, tt {
+    font-family: var(--mono-font);
+    font-size: 0.85em;
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 3px;
+    padding: 0.1em 0.3em;
+}
+
+pre, .md-fences {
+    font-family: var(--mono-font);
+    font-size: 0.7em; /* Very small for wide ASCII diagrams */
+    line-height: 1.25;
+    background-color: transparent;
+    border: none;
+    padding: 0.4em 0;
+    margin: var(--paragraph-spacing) 0;
+    /* Keep pre formatting for ASCII art */
+    white-space: pre;
+    overflow-x: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    /* Prevent page break inside code blocks */
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.md-fences {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+}
+
+/* Remove border from code inside pre */
+pre code, .md-fences code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    white-space: pre;
+}
+
+/* ============================================
+   TABLES - Compact styling
+   ============================================ */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: var(--paragraph-spacing) 0;
+    font-size: 0.95em;
+    width: auto;
+    /* Prevent page break inside tables (where possible) */
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+thead {
+    background-color: var(--table-header-bg);
+}
+
+th, td {
+    border: 1px solid var(--table-border);
+    padding: 0.3em 0.6em;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: var(--table-stripe-bg);
+}
+
+/* ============================================
+   HORIZONTAL RULE
+   ============================================ */
+hr {
+    height: 1px;
+    border: none;
+    background-color: var(--hr-color);
+    margin: 1em 0;
+}
+
+/* ============================================
+   IMAGES
+   ============================================ */
+img {
+    max-width: 100%;
+    height: auto;
+    /* Prevent page break inside images */
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.md-image > .md-meta {
+    color: #888;
+    font-size: 0.85em;
+}
+
+/* ============================================
+   TABLE OF CONTENTS
+   ============================================ */
+.md-toc {
+    margin: 1em 0;
+    font-size: 0.95em;
+}
+
+.md-toc-content {
+    margin-left: 0;
+}
+
+.md-toc-item {
+    color: var(--link-color);
+}
+
+/* ============================================
+   META BLOCK (YAML Front Matter)
+   ============================================ */
+#write pre.md-meta-block {
+    font-size: 0.85em;
+    background-color: #f8f8f8;
+    border: 1px dashed #ccc;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    color: #666;
+}
+
+/* ============================================
+   FOOTNOTES
+   ============================================ */
+.footnotes {
+    font-size: 0.9em;
+    margin-top: 1.5em;
+    border-top: 1px solid var(--hr-color);
+    padding-top: 0.5em;
+}
+
+.footnotes-area {
+    font-size: 0.9em;
+}
+
+sup.md-footnote {
+    color: var(--link-color);
+}
+
+/* ============================================
+   UI ELEMENTS (Typora-specific)
+   ============================================ */
+.ty-table-edit {
+    background-color: transparent;
+}
+
+.md-meta, .md-before, .md-after {
+    color: #999;
+}
+
+.md-tag {
+    color: #888;
+    opacity: 1;
+}
+
+/* Focus indicators */
+#write > h3.md-focus:before,
+#write > h4.md-focus:before,
+#write > h5.md-focus:before,
+#write > h6.md-focus:before {
+    left: -1.4rem;
+    color: #aaa;
+}
+
+/* ============================================
+   SIDEBAR & UI
+   ============================================ */
+#typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.file-list-item.active {
+    background-color: var(--active-file-bg-color);
+    color: var(--active-file-text-color);
+}
+
+.outline-item:hover {
+    background-color: #eee;
+}
+
+header, .context-menu, .megamenu-content, footer {
+    font-family: var(--font-family);
+}
+
+#typora-quick-open {
+    background-color: #f8f8f8;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+/* macOS specific */
+.mac-os #write {
+    caret-color: AccentColor;
+}
+
+.html-for-mac .context-menu {
+    background-color: var(--bg-color);
+}
+
+/* ============================================
+   WINDOWS SPECIFIC
+   ============================================ */
+/* Windows 7 font-weight fix */
+.os-windows-7 strong,
+.os-windows-7 b {
+    font-weight: 760;
+}
+
+/* Windows source mode */
+.os-windows #typora-source {
+    font-family: var(--mono-font);
+}
+
+/* ============================================
+   LINUX SPECIFIC (Electron/Node)
+   ============================================ */
+.typora-node #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.typora-node .outline-item:hover {
+    background-color: #eee;
+    border-left: 28px solid #eee;
+    border-right: 28px solid #eee;
+}
+
+.typora-node .file-list-item-parent-loc,
+.typora-node .file-list-item-time,
+.typora-node .file-list-item-summary {
+    font-family: var(--font-family);
+}
+
+/* Linux scrollbar styling */
+.typora-node::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.typora-node::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.typora-node::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.typora-node::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Linux task list fix */
+.typora-node .md-task-list-item > input {
+    margin-top: 0.3em;
+}
+
+/* ============================================
+   PRINT STYLES - Critical for US Letter
+   ============================================ */
+@media print {
+    /* Page setup for US Letter - minimal margins for max content width */
+    @page {
+        size: letter; /* 8.5" x 11" (215.9mm x 279.4mm) */
+        margin: 10mm 10mm 15mm 10mm; /* Minimal margins */
+    }
+
+    /* First page can have different margins if needed */
+    @page :first {
+        margin-top: 12mm;
+    }
+
+    html {
+        font-size: 9pt; /* Compact print size */
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    #write {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Critical: Prevent line breaks at page boundaries */
+    p, li, blockquote {
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* Prevent elements from being split across pages */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* Keep headings with following content - all element types */
+    h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + *,
+    h1 + table, h2 + table, h3 + table, h4 + table, h5 + table, h6 + table {
+        page-break-before: avoid !important;
+        break-before: avoid !important;
+    }
+
+    /* Code blocks - very small font for wide content, no border/bg */
+    pre, .md-fences {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        font-size: 6pt !important; /* Very small for wide ASCII diagrams */
+        line-height: 1.2 !important;
+        white-space: pre !important; /* Keep formatting for diagrams */
+        overflow: hidden !important; /* Clip instead of scroll */
+        border: none !important;
+        background-color: transparent !important;
+    }
+
+    code {
+        font-size: 8pt !important;
+    }
+
+    table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* For longer tables, allow breaks but keep header */
+    thead {
+        display: table-header-group;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    blockquote {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    img {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        max-width: 100% !important;
+    }
+
+    /* Lists */
+    ul, ol {
+        page-break-before: avoid;
+    }
+
+    li {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Hide UI elements */
+    .typora-export .md-toc-tooltip,
+    .typora-export .outline-item-wrapper {
+        display: none;
+    }
+
+    /* Links: Don't show URL (saves space) */
+    a[href]:after {
+        content: none !important;
+    }
+
+    /* Table borders for print */
+    table, th, td {
+        border: 1px solid #999 !important;
+    }
+
+    thead {
+        background-color: #eee !important;
+    }
+}
+
+/* ============================================
+   EXPORT STYLES (PDF/HTML export)
+   ============================================ */
+.typora-export {
+    /* Ensure colors are preserved in export */
+}
+
+.typora-export * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.typora-export h1,
+.typora-export h2 {
+    border-bottom-color: #ccc;
+}
+
+/* Critical: Code blocks in export - very compact, no border/bg */
+.typora-export pre,
+.typora-export .md-fences {
+    font-size: 6pt !important;
+    line-height: 1.2 !important;
+    white-space: pre !important;
+    overflow: visible !important;
+    max-width: 196mm !important; /* Letter width minus margins */
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.typora-export code {
+    font-size: 7pt !important;
+}
+
+/* Ensure content fits on page */
+.typora-export #write {
+    max-width: 196mm;
+    padding: 0;
+}
+
+/* ============================================
+   SPECIAL ELEMENTS
+   ============================================ */
+
+/* Definition lists */
+dl {
+    margin: var(--paragraph-spacing) 0;
+}
+
+dt {
+    font-weight: 600;
+}
+
+dd {
+    margin-left: var(--list-indent);
+    margin-bottom: 0.3em;
+}
+
+/* Abbreviations */
+abbr[title] {
+    border-bottom: 1px dotted #999;
+    cursor: help;
+}
+
+/* Keyboard shortcuts */
+kbd {
+    font-family: var(--mono-font);
+    font-size: 0.85em;
+    padding: 0.1em 0.4em;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 #bbb;
+}
+
+/* Subscript and superscript */
+sub, sup {
+    font-size: 0.75em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ============================================
+   MATH (MathJax/KaTeX)
+   ============================================ */
+.mathjax-block {
+    margin: var(--paragraph-spacing) 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.md-mathjax-midline {
+    background: var(--code-bg);
+}
+
+/* ============================================
+   DIAGRAMS (Mermaid, etc.)
+   ============================================ */
+.md-diagram-panel {
+    margin: var(--paragraph-spacing) 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.md-diagram-panel svg {
+    max-width: 100%;
+}

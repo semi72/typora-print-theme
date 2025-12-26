@@ -2,6 +2,10 @@
 
 Print-optimized Typora themes for minimal paper usage and professional output.
 
+**Homepage:** https://semi72.github.io/typora-print-theme/
+**Repository:** https://github.com/semi72/typora-print-theme
+**Download:** [Latest Release](https://github.com/semi72/typora-print-theme/releases/latest)
+
 > **Note:** Designed and tested on macOS. Not fully tested, but should work for Windows/Linux.
 
 ## Themes
